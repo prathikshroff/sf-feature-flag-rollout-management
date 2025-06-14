@@ -1,0 +1,16 @@
+<template>
+    <lightning-card title="Feature Flag Manager">
+        <div class="slds-p-horizontal_small">
+            <template if:true={featureFlags}>
+                <lightning-datatable
+                    key-field="Id"
+                    data={featureFlags}
+                    columns={columns}>
+                </lightning-datatable>
+            </template>
+            <template if:false={featureFlags}>
+                <p>No Feature Flags found.</p>
+            </template>
+        </div>
+    </lightning-card>
+</template>
