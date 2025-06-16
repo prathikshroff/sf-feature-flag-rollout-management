@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField>
+    <fullName>User__c</fullName>
+    <type>Lookup</type>
+    <inlineHelpText/>
+    <description>Associated User</description>
+    <label>User</label>
+    <referenceTo>User</referenceTo>
+    <relationshipLabel>Feature Flag Assignments</relationshipLabel>
+    <relationshipName>FeatureFlagAssignments</relationshipName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <securityClassification>Public</securityClassification>
+</CustomField>

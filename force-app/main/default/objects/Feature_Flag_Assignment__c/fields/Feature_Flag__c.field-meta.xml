@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField>
+    <fullName>Feature_Flag__c</fullName>
+    <type>Lookup</type>
+    <inlineHelpText/>
+    <description>Associated Feature Flag</description>
+    <label>Feature Flag</label>
+    <referenceTo>Feature_Flag__c</referenceTo>
+    <relationshipLabel>Feature Flag Assignments</relationshipLabel>
+    <relationshipName>FeatureFlagAssignments</relationshipName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <securityClassification>Public</securityClassification>
+</CustomField>

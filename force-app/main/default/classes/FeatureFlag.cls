@@ -20,10 +20,27 @@ public class FeatureFlag {
             return true;
         }
 
-        // 3. Check if the current user's profile has an assignment.
+        // 3. Check if the current user's profile has a permission set assignment.
+        // Get the User's Profile Id
         String profileId = UserInfo.getProfileId();
-        if ([SELECT Id FROM Feature_Flag_Assignment__c WHERE Feature_Flag__c = :flag.Id AND Profile__c = :profileId LIMIT 1].size() > 0) {
-            return true;
+
+        // Check if the user has a permission set assigned that is associated with the feature flag
+        List<PermissionSetAssignment> permSetAssignments = [SELECT AssigneeId FROM PermissionSetAssignment WHERE AssigneeId = :UserInfo.getUserId()];
+        Set<Id> permissionSetIds = new Set<Id>();
+        for(PermissionSetAssignment psa : permSetAssignments){
+            permissionSetIds.add(psa.PermissionSetId);
+        }
+
+        // Query all Custom Permissions
+        List<CustomPermission> customPermissions = [SELECT Id, DeveloperName FROM CustomPermission WHERE NamespacePrefix = null];
+        Set<String> customPermissionNames = new Set<String>();
+        for(CustomPermission cp : customPermissions){
+            customPermissionNames.add(cp.DeveloperName);
+        }
+
+        // Check if the feature flag is enabled via custom permission
+        if(customPermissionNames.contains(featureName)){
+            return FeatureManagement.checkPermission(featureName, UserInfo.getUserId());
         }
 
         // 4. Check the percentage rollout.
@@ -31,13 +48,13 @@ public class FeatureFlag {
             // Use the user's ID to generate a random number.
             // Get the User Id and convert it to a decimal
             String userId = UserInfo.getUserId();
-            Decimal userIdDecimal = 0;
+            Integer userIdInt = 0;
             for(Integer i = 0; i < userId.length(); i++){
-                userIdDecimal += userId.substring(i, i+1).charCodeAt(0);
+                userIdInt += userId.substring(i, i+1).charAt(0);
             }
 
             // Generate a random number between 0 and 99
-            Decimal randomNumber = Math.mod(userIdDecimal, 100);
+            Decimal randomNumber = math.mod(userIdInt, 100);
 
             // Compare the random number to the Percentage_Rollout__c value.
             if (randomNumber <= flag.Percentage_Rollout__c) {

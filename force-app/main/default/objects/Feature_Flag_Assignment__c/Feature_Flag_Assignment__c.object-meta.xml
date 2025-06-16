@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject>
+    <pluralLabel>Feature Flag Assignments</pluralLabel>
+    <fullName>Feature_Flag_Assignment__c</fullName>
+    <description>FF Assignment Custom Object</description>
+    <nameField>
+        <label>Feature Flag Assignment Name</label>
+        <type>AutoNumber</type>
+        <displayFormat>Assignment-{0}</displayFormat>
+    </nameField>
+    <enableBulkApi>true</enableBulkApi>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <enableHistory>false</enableHistory>
+    <enableActivities>false</enableActivities>
+    <enableSearch>true</enableSearch>
+    <enableFeeds>false</enableFeeds>
+    <enableReports>true</enableReports>
+    <sharingModel>ReadWrite</sharingModel>
+    <label>Feature Flag Assignment</label>
+    <deploymentStatus>Deployed</deploymentStatus>
+</CustomObject>
