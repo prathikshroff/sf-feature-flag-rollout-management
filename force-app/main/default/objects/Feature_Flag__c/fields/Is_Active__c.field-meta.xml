@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField>
+    <fullName>Is_Active__c</fullName>
+    <type>Checkbox</type>
+    <inlineHelpText/>
+    <defaultValue>false</defaultValue>
+    <description>Is Feature Flag Active?</description>
+    <label>Is Active</label>
+    <securityClassification>Public</securityClassification>
+</CustomField>

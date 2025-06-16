@@ -1,41 +1,21 @@
-<?xml version="1.0" encoding="utf-8"?>
-<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
-    <label>Feature Flag</label>
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject>
     <pluralLabel>Feature Flags</pluralLabel>
+    <fullName>Feature_Flag__c</fullName>
+    <description>Feature Flag Custom Object</description>
     <nameField>
         <label>Feature Flag Name</label>
         <type>Text</type>
     </nameField>
-    <deploymentStatus>Deployed</deploymentStatus>
+    <enableBulkApi>true</enableBulkApi>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <enableHistory>false</enableHistory>
+    <enableActivities>false</enableActivities>
+    <enableSearch>true</enableSearch>
+    <enableFeeds>false</enableFeeds>
+    <enableReports>true</enableReports>
     <sharingModel>ReadWrite</sharingModel>
-    <fields>
-        <fullName>Description__c</fullName>
-        <label>Description</label>
-        <type>LongTextArea</type>
-        <visibleLines>3</visibleLines>
-    </fields>
-    <fields>
-        <fullName>Is_Active__c</fullName>
-        <defaultValue>false</defaultValue>
-        <label>Is Active</label>
-        <type>Checkbox</type>
-    </fields>
-    <fields>
-        <fullName>Percentage_Rollout__c</fullName>
-        <label>Percentage Rollout</label>
-        <precision>3</precision>
-        <scale>0</scale>
-        <type>Percent</type>
-    </fields>
-    <fields>
-        <fullName>DeveloperName</fullName>
-        <label>Developer Name</label>
-        <type>Text</type>
-        <unique>true</unique>
-        <caseSensitive>false</caseSensitive>
-    </fields>
-    <nameField>
-        <label>Feature Flag Name</label>
-        <type>Text</type>
-    </nameField>
+    <label>Feature Flag</label>
+    <deploymentStatus>Deployed</deploymentStatus>
 </CustomObject>
