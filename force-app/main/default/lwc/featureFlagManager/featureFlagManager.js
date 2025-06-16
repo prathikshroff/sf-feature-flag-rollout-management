@@ -1,7 +1,8 @@
 import { LightningElement, wire } from 'lwc';
-import { getListUi } from 'lightning/uiListApi';
+import { getListRecordsByName } from 'lightning/uiListsApi';
 import { createRecord, updateRecord } from 'lightning/uiRecordApi';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
+import FEATURE_FLAG_OBJECT from "@salesforce/schema/Feature_Flag__c";
 
 const COLUMNS = [
     { label: 'Name', fieldName: 'Name', type: 'text', editable: true },
@@ -15,13 +16,22 @@ export default class FeatureFlagManager extends LightningElement {
     featureFlags = [];
     draftValues = [];
 
-    @wire(getListUi, {
-        objectApiName: 'Feature_Flag__c',
-        listViewApiName: 'All_Feature_Flags' // Replace with your list view API name
+    @wire(getListRecordsByName, {
+        objectApiName: FEATURE_FLAG_OBJECT.objectApiName,
+        listViewApiName: 'All', // Replace with your list view API name
+        fields: [
+            'Feature_Flag__c.Name',
+            'Feature_Flag__c.Description__c',
+            'Feature_Flag__c.Is_Active__c',
+            'Feature_Flag__c.Percentage_Rollout__c'
+        ],
+        sortBy: ["Feature_Flag__c.Name"],
+        pageSize: 10
     })
     wiredFeatureFlags({ error, data }) {
         if (data) {
-            this.featureFlags = data.records.records.map(record => {
+            console.log('Feature Flags data:', JSON.stringify(data));
+            this.featureFlags = data?.records?.map(record => {
                 return {
                     Id: record.id,
                     Name: record.fields.Name.value,
