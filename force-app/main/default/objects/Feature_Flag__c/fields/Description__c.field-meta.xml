@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField>
+    <fullName>Description__c</fullName>
+    <type>LongTextArea</type>
+    <visibleLines>5</visibleLines>
+    <length>131072</length>
+    <inlineHelpText/>
+    <description>Feature Flag Description</description>
+    <label>Description</label>
+    <securityClassification>Public</securityClassification>
+</CustomField>

@@ -1,0 +1,13 @@
+<template>
+    <lightning-card title="Feature Flag Manager">
+        <div class="slds-p-horizontal_small">
+            <lightning-datatable
+                key-field="Id"
+                data={featureFlags}
+                columns={columns}
+                draft-values={draftValues}
+                onsave={handleSave}>
+            </lightning-datatable>
+        </div>
+    </lightning-card>
+</template>
