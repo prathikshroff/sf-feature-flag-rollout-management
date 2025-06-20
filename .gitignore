@@ -10,6 +10,11 @@ deploy-options.json
 .vscode/
 config/
 .husky/
+scripts/
+manifest/
+.forceignore
+jest.config.js
+package.json
 
 # LWC VSCode autocomplete
 **/lwc/jsconfig.json
