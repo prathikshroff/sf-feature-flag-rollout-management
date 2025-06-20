@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<CustomField>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Feature_Flag__c</fullName>
-    <type>Lookup</type>
-    <inlineHelpText/>
+    <deleteConstraint>SetNull</deleteConstraint>
     <description>Associated Feature Flag</description>
     <label>Feature Flag</label>
     <referenceTo>Feature_Flag__c</referenceTo>
     <relationshipLabel>Feature Flag Assignments</relationshipLabel>
     <relationshipName>FeatureFlagAssignments</relationshipName>
-    <deleteConstraint>SetNull</deleteConstraint>
+    <required>false</required>
     <securityClassification>Public</securityClassification>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
 </CustomField>
