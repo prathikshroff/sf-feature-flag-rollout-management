@@ -9,7 +9,9 @@ public class FeatureFlag {
      */
     public static Boolean isEnabled(String featureName) {
         // 1. Check if the feature flag is active.
-        Feature_Flag__c flag = [SELECT Id, Is_Active__c, Percentage_Rollout__c FROM Feature_Flag__c WHERE Name = :featureName LIMIT 1];
+        List<Feature_Flag__c> flags = [SELECT Id, Is_Active__c, Percentage_Rollout__c FROM Feature_Flag__c WHERE Name = :featureName LIMIT 1];
+        if (flags.isEmpty()) return false;
+        Feature_Flag__c flag = flags[0];
 
         if (flag == null || !flag.Is_Active__c) {
             return false;
@@ -57,7 +59,7 @@ public class FeatureFlag {
             Decimal randomNumber = math.mod(userIdInt, 100);
 
             // Compare the random number to the Percentage_Rollout__c value.
-            if (randomNumber <= flag.Percentage_Rollout__c) {
+            if (randomNumber < flag.Percentage_Rollout__c) {
                 return true;
             }
         }
