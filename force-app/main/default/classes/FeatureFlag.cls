@@ -22,27 +22,9 @@ public class FeatureFlag {
             return true;
         }
 
-        // 3. Check if the current user's profile has a permission set assignment.
-        // Get the User's Profile Id
-        String profileId = UserInfo.getProfileId();
-
-        // Check if the user has a permission set assigned that is associated with the feature flag
-        List<PermissionSetAssignment> permSetAssignments = [SELECT AssigneeId FROM PermissionSetAssignment WHERE AssigneeId = :UserInfo.getUserId()];
-        Set<Id> permissionSetIds = new Set<Id>();
-        for(PermissionSetAssignment psa : permSetAssignments){
-            permissionSetIds.add(psa.PermissionSetId);
-        }
-
-        // Query all Custom Permissions
-        List<CustomPermission> customPermissions = [SELECT Id, DeveloperName FROM CustomPermission WHERE NamespacePrefix = null];
-        Set<String> customPermissionNames = new Set<String>();
-        for(CustomPermission cp : customPermissions){
-            customPermissionNames.add(cp.DeveloperName);
-        }
-
-        // Check if the feature flag is enabled via custom permission
-        if(customPermissionNames.contains(featureName)){
-            return FeatureManagement.checkPermission(featureName, UserInfo.getUserId());
+        // 3. Check if the current user has the feature enabled via custom permission
+        if (FeatureManagement.checkPermission(featureName, UserInfo.getUserId())) {
+            return true;
         }
 
         // 4. Check the percentage rollout.
